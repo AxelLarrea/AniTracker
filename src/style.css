@@ -2,15 +2,20 @@
 
 :root {
   --primary-color: #152232;
-  --secondary-color: #0b1621;
+  --secondary-color: #003147;
+  --accent-color: #4d85fb;
+  --background-color: #0b1621;
 }
 
 body {
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
   color: #fff;
 }
 
 @theme {
   --color-primary: var(--primary-color);
   --color-secondary: var(--secondary-color);
+  --color-background: var(--background-color);
+  --color-accent: var(--accent-color);
+
 }

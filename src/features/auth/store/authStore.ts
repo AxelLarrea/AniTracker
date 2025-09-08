@@ -5,14 +5,14 @@ import type { authProps, authStoreProps } from "../types/auth.types";
 export const useAuthStore = create<authStoreProps>((set) => ({
   user: null,
   profile: null,
-  isLoading: true,
+  isLoading: false,
 
   // Operaciones
   login: async ({ email, password }: authProps) => {
     try{
       set({ isLoading: true });
       const user = await authService.login({ email, password });
-      set({ user });
+      set({ user: user.user });
     }finally{
       set({ isLoading: false });
     }
@@ -27,7 +27,7 @@ export const useAuthStore = create<authStoreProps>((set) => ({
     try{
       set({ isLoading: true });
       const user = await authService.signUp({ email, password });
-      set({ user });
+      set({ user: user.user });
     }finally{
       set({ isLoading: false });
     }

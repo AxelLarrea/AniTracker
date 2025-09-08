@@ -1,5 +1,4 @@
-import { supabasePublic, supabaseAdmin } from "@/shared/services/supabase";
-
+import { supabasePublic } from "@/shared/services/supabase";
 
 class ProfileService {
   // Obtener perfil del usuario
@@ -9,14 +8,21 @@ class ProfileService {
     return user;
   }
 
-  // TODO: Mover esta función a la carpeta /api para usar ahí el cliente de admin
   // Eliminar perfil
   async deleteProfile(id: string) {
-    const { error } = await supabaseAdmin.auth.admin.deleteUser(id);
-    if (error) throw error;
-    return { message: 'Profile deleted successfully' };
-  }
+    const baseUrl = import.meta.env.VITE_DEV_API_URL || ''
+    const response = await fetch(`${baseUrl}/api/deleteUser`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }),
+    })
 
+    if (!response.ok) throw new Error('Error al eliminar el perfil')
+
+    return response
+  }
 }
 
 export default new ProfileService();

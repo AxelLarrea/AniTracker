@@ -1,3 +1,5 @@
+import type { User } from "@supabase/supabase-js"
+
 export interface authProps {
   email: string,
   password: string,
@@ -19,7 +21,7 @@ export interface profileProps {
 }
 
 export interface authStoreProps {
-  user: object | null,
+  user: User | null,
   profile: object | null,
   isLoading: boolean,
 
