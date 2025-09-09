@@ -3,12 +3,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 import Layout from "@/shared/components/layout/Layout"
 import DashboardPage from "@/pages/DashboardPage"
-import AuthPage from "@/pages/AuthPage"
 import AnimeListPage from "@/pages/AnimeListPage"
 import AnimeDetailsPage from "@/pages/AnimeDetailsPage"
 import ProfilePage from "@/pages/ProfilePage"
 import SettingsPage from "@/pages/SettingsPage"
 import NotFoundPage from "@/pages/NotFoundPage"
+import LoginPage from "./pages/LoginPage"
+import SignupPage from "./pages/SignupPage"
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -25,7 +26,8 @@ const App = () => {
       <Layout>
         <Switch>
           <Route path="/" component={DashboardPage} />
-          <Route path="/auth" component={AuthPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignupPage} />
           <Route path="/anime-list" component={AnimeListPage} />
           <Route path="/anime/:id" component={AnimeDetailsPage} />
           <Route path="/profile" component={ProfilePage} />
