@@ -2,6 +2,7 @@ import { supabasePublic } from "@/shared/services/supabase";
 
 class ProfileService {
   // Obtener perfil del usuario
+  // TODO: Modificar la función para que se obtenga el perfil del usuario de la DB
   async getUserProfile() {
     const { data: { user }, error } = await supabasePublic.auth.getUser();
     if (error) throw error;

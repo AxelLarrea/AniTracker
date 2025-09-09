@@ -1,8 +1,10 @@
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useLocation } from "wouter";
 
-const AuthPage = () => {
-
+const LoginPage = () => {
+  
   const { login, isLoading } = useAuth();
+  const [,navigate] = useLocation();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,15 +15,15 @@ const AuthPage = () => {
 
     try {
       login({ email, password });
+      navigate('/');
     } catch (error) {
       console.log(error)
     }
 
   }
 
-
   return (
-    <form className="w-[300px] bg-primary flex flex-col gap-2 rounded-lg p-8 mx-auto mt-16" onSubmit={handleSubmit}>
+    <form className="w-[325px] bg-primary flex flex-col gap-2 rounded-lg px-8 py-12 mx-auto mt-16" onSubmit={handleSubmit}>
       <div className="flex flex-col">
         <label htmlFor="email">Email</label>
         <input
@@ -29,7 +31,6 @@ const AuthPage = () => {
           type="email"
           name="email"
           id="email"
-          placeholder="Email"
           required
         />
       </div>
@@ -41,7 +42,6 @@ const AuthPage = () => {
           type="password"
           name="password"
           id="password"
-          placeholder="Password"
           required
         />
       </div>
@@ -56,16 +56,22 @@ const AuthPage = () => {
               <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
-          </div>: 
-          'Iniciar sesión' }
+          </div> : 
+          'Iniciar sesión' 
+        }
       </button>
 
       <div className="flex flex-col items-center mt-4">
         <p>No tienes cuenta?</p>
-        <p className="text-accent text-sm cursor-pointer hover:underline">Regístrate</p>
+        <p 
+          className="text-accent text-sm cursor-pointer hover:underline"
+          onClick={() => navigate('/signup')}
+        >
+          Regístrate
+        </p>
       </div>
     </form>
   );
 }
-
-export default AuthPage;
+ 
+export default LoginPage;
