@@ -1,7 +1,7 @@
-import AnimeCard from "@/features/anime-list/components/AnimeCard";
-import type { AnimeCardProps } from "@/features/anime-list/types/animeList.types";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "wouter";
+import AnimeCard from "@/features/anime-list/components/AnimeCard";
+import type { AnimeCardProps } from "@/features/anime-list/types/animeList.types";
 
 const AnimeListPage = () => {
   const { query: queryParams } = useParams()
@@ -76,7 +76,7 @@ const AnimeListPage = () => {
   if (error) return <p>Error: {error.message}</p>
   
   return (
-    <div className="flex flex-wrap gap-4 mt-8">
+    <div className="flex flex-wrap justify-center gap-6 mt-8">
       {
         animes.map((anime: AnimeCardProps) => (
           <AnimeCard 
