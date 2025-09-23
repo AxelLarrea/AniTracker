@@ -28,7 +28,7 @@ const App = () => {
           <Route path="/" component={DashboardPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/signup" component={SignupPage} />
-          <Route path="/anime-list" component={AnimeListPage} />
+          <Route path="/search/:query" component={AnimeListPage} />
           <Route path="/anime/:id" component={AnimeDetailsPage} />
           <Route path="/profile" component={ProfilePage} />
           <Route path="/settings" component={SettingsPage} />

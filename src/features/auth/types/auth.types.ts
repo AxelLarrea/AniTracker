@@ -3,7 +3,6 @@ import type { User } from "@supabase/supabase-js"
 export interface loginProps {
   email: string,
   password: string,
-  display_name?: string
 }
 
 export interface signupProps {

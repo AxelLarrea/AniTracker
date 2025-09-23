@@ -1,13 +1,23 @@
-import { useAuth } from "@/features/auth/hooks/useAuth";
-import { SearchIcon } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
+import { SearchIcon } from "lucide-react";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 import ProfileDropdown from "../ui/ProfileDropdown";
 
 const Header = () => {
 
   const [,navigate] = useLocation();
   const { user, initialize, cleanup, logout } = useAuth();
+  const [inputValue, setInputValue] = useState('');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    navigate(`/search/${inputValue}`);
+  }
 
   useEffect(() => {
     initialize()
@@ -26,13 +36,18 @@ const Header = () => {
         </a>
 
         <div className="flex items-center gap-4">
-          <div className="flex items-center">
+          <form 
+            className="flex items-center" 
+            onSubmit={handleSubmit}
+          >
             <input
               type="text"
               name="search"
               id="search"
               placeholder="Busca un anime..."
               className="h-8 bg-secondary outline-0 rounded-s-md py-1 px-2"
+              autoComplete="off"
+              onChange={handleChange}
             />
             <button 
               type="submit" 
@@ -40,7 +55,7 @@ const Header = () => {
             >
               <SearchIcon size={20} />
             </button>
-          </div>
+          </form>
 
 
           { !user &&
