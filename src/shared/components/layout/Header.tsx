@@ -25,11 +25,13 @@ const Header = () => {
     return () => cleanup()
   }, [initialize, cleanup]);
 
+  // TODO: Probar cambiar los botones para login directamente por el logo de perfil + dropdown
+
   return (
     <header className="bg-primary p-6">
       <div className="max-w-[1200px] flex justify-between items-center mx-auto">
         <a href="/">
-          <span className="text-3xl font-bold">
+          <span className="text-3xl font-bold text-white">
             <span className="text-accent">Ani</span>
             Tracker
           </span>
@@ -51,6 +53,8 @@ const Header = () => {
             />
             <button 
               type="submit" 
+              name="search"
+              aria-label="Buscar"
               className="h-8 bg-secondary cursor-pointer rounded-e-md pr-2"
             >
               <SearchIcon size={20} />
@@ -62,13 +66,15 @@ const Header = () => {
             <div className="font-medium flex items-center gap-2">
               <button
                 className="h-10 flex items-center gap-2 rounded-md cursor-pointer py-1 px-2"
+                name="login"
                 onClick={() => navigate("/login")}
                 >
                 Iniciar sesión
               </button>
 
               <button
-                className="h-10 flex items-center gap-2 rounded-md cursor-pointer border-2 border-accent py-1 px-2"
+                className="h-10 text-white/90 flex items-center gap-2 rounded-md cursor-pointer border-2 border-accent py-1 px-2"
+                name="signup"
                 onClick={() => navigate("/signup")}
                 >
                 Registrarse

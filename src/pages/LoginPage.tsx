@@ -22,6 +22,8 @@ const LoginPage = () => {
 
   }
 
+  // TODO: Refactorizar el formulario
+
   return (
     <form className="w-[325px] bg-primary flex flex-col gap-2 rounded-lg px-8 py-12 mx-auto mt-16" onSubmit={handleSubmit}>
       <div className="flex flex-col">
@@ -61,10 +63,10 @@ const LoginPage = () => {
         }
       </button>
 
-      <div className="flex flex-col items-center mt-4">
-        <p>No tienes cuenta?</p>
+      <div className="flex items-end justify-center gap-2 mt-4">
+        <p className="text-white">¿No tienes cuenta?</p>
         <p 
-          className="text-accent text-sm cursor-pointer hover:underline"
+          className="text-accent cursor-pointer hover:underline"
           onClick={() => navigate('/signup')}
         >
           Regístrate
