@@ -7,14 +7,14 @@ const AnimeListPage = () => {
   const { query: queryParams } = useParams()
   // Query para buscar por nombre
   const query = `
-    query ($search: String, $mediaGenreNotIn2: [String], $page: Int, $perPage: Int) {
+    query ($search: String, $mediaGenreNotIn: [String], $formatNotIn: [MediaFormat], $page: Int, $perPage: Int) {
       Page (page: $page, perPage: $perPage) {
         pageInfo {
           currentPage
           hasNextPage
           perPage
         }
-        media(search: $search, genre_not_in: $mediaGenreNotIn2, type: ANIME) {
+        media(search: $search, genre_not_in: $mediaGenreNotIn, format_not_in: $formatNotIn, type: ANIME) {
           id
           title {
             romaji
@@ -29,6 +29,14 @@ const AnimeListPage = () => {
           }
           genres
           format
+          description
+          episodes
+          studios {
+            nodes {
+              isAnimationStudio
+              name
+            }
+          }
         }
       }
     }
@@ -37,7 +45,8 @@ const AnimeListPage = () => {
   // Valor de las variables de la query
   const variables = {
     search: queryParams, // Busqueda
-    mediaGenreNotIn2: "Hentai" // Excluir géneros
+    mediaGenreNotIn: "Hentai", // Excluir géneros
+    formatNotIn: "MUSIC"
   };
 
   // Configuración de la petición
@@ -65,26 +74,30 @@ const AnimeListPage = () => {
     queryKey: ['animes', queryParams],
     queryFn: fetchData,
   })
-
   
   const animes = data?.data?.Page?.media
 
   // console.log(data)
   // console.log(animes)
   
+  // TODO: Crear un componente de error y uno de carga
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
   
   return (
-    <div className="flex flex-wrap justify-center gap-6 mt-8">
+    <div className="flex flex-wrap gap-[25px] mt-8">
       {
-        animes.map((anime: AnimeCardProps) => (
+        animes?.map((anime: AnimeCardProps) => (
           <AnimeCard 
             key={anime.id} 
             id={anime.id} 
             title={anime.title} 
             coverImage={anime.coverImage} 
             format={anime.format} 
+            description={anime.description}
+            genres={anime.genres}
+            episodes={anime.episodes}
+            studios={anime.studios}
           />
         ))
       }

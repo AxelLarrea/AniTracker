@@ -11,5 +11,14 @@ export interface AnimeCardProps {
     large: string,
     medium: string
   },
-  format: string
+  format: string,
+  description: string,
+  genres: string[],
+  episodes: number,
+  studios: {
+    nodes: {
+      isAnimationStudio: boolean,
+      name: string
+    }[]
+  }
 }
