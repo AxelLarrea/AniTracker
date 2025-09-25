@@ -4,6 +4,7 @@
   --primary-color: #152232;
   --secondary-color: #003147;
   --accent-color: #4d85fb;
+  --accent-light-color: #8cb1ff;
   --background-color: #0b1621;
   --text-primary-color: #989cbd;
   --text-secondary-color: #c1c4db;
@@ -15,11 +16,22 @@ body {
   color: var(--text-terciary-color);
 }
 
+input:autofill,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  border: 1px solid var(--text-terciary-color);
+  -webkit-box-shadow: 0 0 0 32px var(--secondary-color) inset !important;
+  -webkit-text-fill-color: var(--text-secondary-color) !important;
+}
+
 @theme {
   --color-primary: var(--primary-color);
   --color-secondary: var(--secondary-color);
   --color-background: var(--background-color);
   --color-accent: var(--accent-color);
+  --color-accent-light: var(--accent-light-color);
   --color-neutral: var(--text-primary-color);
   --color-neutral-light: var(--text-secondary-color);
   --color-neutral-dark: var(--text-terciary-color);

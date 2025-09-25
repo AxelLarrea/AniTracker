@@ -77,10 +77,8 @@ const AnimeListPage = () => {
   
   const animes = data?.data?.Page?.media
 
-  // console.log(data)
-  // console.log(animes)
-  
   // TODO: Crear un componente de error y uno de carga
+  if (animes?.length === 0) return <p>No se encontraron animes</p>
   if (isLoading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
   

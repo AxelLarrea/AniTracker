@@ -39,7 +39,7 @@ const Header = () => {
 
         <div className="flex items-center gap-4">
           <form 
-            className="flex items-center" 
+            className="flex items-center rounded-md border border-accent/50" 
             onSubmit={handleSubmit}
           >
             <input
@@ -47,7 +47,7 @@ const Header = () => {
               name="search"
               id="search"
               placeholder="Busca un anime..."
-              className="h-8 bg-secondary outline-0 rounded-s-md py-1 px-2"
+              className="h-10 text-neutral-light bg-secondary outline-0 rounded-s-md py-1 px-2"
               autoComplete="off"
               onChange={handleChange}
             />
@@ -55,7 +55,7 @@ const Header = () => {
               type="submit" 
               name="search"
               aria-label="Buscar"
-              className="h-8 bg-secondary cursor-pointer rounded-e-md pr-2"
+              className="h-10 text-neutral-light bg-secondary cursor-pointer rounded-e-md pr-2"
             >
               <SearchIcon size={20} />
             </button>
@@ -63,7 +63,7 @@ const Header = () => {
 
 
           { !user &&
-            <div className="font-medium flex items-center gap-2">
+            <div className="font-medium text-white/90 flex items-center gap-2">
               <button
                 className="h-10 flex items-center gap-2 rounded-md cursor-pointer py-1 px-2"
                 name="login"
@@ -73,7 +73,7 @@ const Header = () => {
               </button>
 
               <button
-                className="h-10 text-white/90 flex items-center gap-2 rounded-md cursor-pointer border-2 border-accent py-1 px-2"
+                className="h-10 flex items-center gap-2 rounded-md cursor-pointer border-1 border-accent py-1 px-2"
                 name="signup"
                 onClick={() => navigate("/signup")}
                 >
@@ -81,27 +81,27 @@ const Header = () => {
               </button>
             </div>
           }
-
+          
           { user &&
             <div className="group flex relative">
-              <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center">
+              <div className="w-10 h-10 rounded-md bg-secondary flex items-center justify-center">
                 <img 
                   className="w-10 h-10 rounded-full"
-                  src={user.user_metadata.avatar_url} 
+                  src={user?.user_metadata.avatar_url} 
                   alt={user?.user_metadata.display_name}
                   width={40}
                   height={40}
                 />
               </div>
-              <p>{user.user_metadata.display_name}</p>
+              <p>{user?.user_metadata.display_name}</p> {/* Para verificar que se guarda el display name */}
 
               {/* Dropdown */}
-              <ProfileDropdown 
+              <ProfileDropdown
                 navigate={navigate} 
                 logout={logout} 
               />
             </div>
-          }
+          }  
         </div>
       </div>
     </header>
