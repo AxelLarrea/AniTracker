@@ -17,39 +17,43 @@ const LoginPage = () => {
       login({ email, password });
       navigate('/');
     } catch (error) {
-      console.log(error)
+      // TODO: Manejar el error mostrando notificación con toast o mensaje
+      console.log(error) 
     }
-
   }
 
   // TODO: Refactorizar el formulario
 
   return (
     <form className="w-[325px] bg-primary flex flex-col gap-2 rounded-lg px-8 py-12 mx-auto mt-16" onSubmit={handleSubmit}>
+      <h1 className="text-2xl font-bold text-center text-white mb-4">Iniciar Sesión</h1>
       <div className="flex flex-col">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" className="font-medium text-sm text-accent mb-1">Correo electrónico</label>
         <input
-          className="h-8 text-sm bg-secondary outline-0 ::placeholder:text-slate-700 rounded-md py-1 px-2"
+          className="h-8 text-sm text-white bg-secondary outline-0 placeholder:text-neutral-dark rounded-md py-1 px-2"
           type="email"
           name="email"
           id="email"
+          autoComplete="email"
+          placeholder="email@example.com"
           required
         />
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password" className="font-medium text-sm text-accent mb-1">Contraseña</label>
         <input
-          className="h-8 text-sm bg-secondary outline-0 ::placeholder:text-slate-700 rounded-md py-1 px-2"
+          className="h-8 text-sm text-white bg-secondary outline-0 placeholder:text-neutral-dark rounded-md py-1 px-2"
           type="password"
           name="password"
           id="password"
+          placeholder="********"
           required
         />
       </div>
 
       <button 
-        className="relative h-8 bg-accent text-sm rounded-md cursor-pointer py-1 px-2 mt-4" 
+        className="relative h-8 bg-accent font-medium  text-white rounded-md cursor-pointer py-1 px-2 mt-4" 
         type="submit"
       >
         { isLoading ? 
@@ -63,7 +67,7 @@ const LoginPage = () => {
         }
       </button>
 
-      <div className="flex items-end justify-center gap-2 mt-4">
+      <div className="font-medium flex items-end justify-center gap-2 mt-4">
         <p className="text-white">¿No tienes cuenta?</p>
         <p 
           className="text-accent cursor-pointer hover:underline"

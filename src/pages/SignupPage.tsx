@@ -25,11 +25,12 @@ const SignupPage = () => {
   }
 
   return (
-    <form className="w-[300px] bg-primary flex flex-col gap-2 rounded-lg p-8 mx-auto mt-16" onSubmit={handleSubmit}>
+    <form className="w-[325px] bg-primary flex flex-col gap-2 rounded-lg p-8 mx-auto mt-16" onSubmit={handleSubmit}>
+      <h1 className="text-2xl font-bold text-center text-white mb-4">Registrarse</h1>
       <div className="flex flex-col">
         <label htmlFor="username">Nombre de usuario</label>
         <input
-          className="h-8 text-sm bg-secondary outline-0 ::placeholder:text-slate-700 rounded-md py-1 px-2"
+          className="h-8 text-sm bg-secondary outline-0 placeholder:text-slate-700 rounded-md py-1 px-2"
           type="text"
           name="username"
           id="username"
@@ -40,10 +41,12 @@ const SignupPage = () => {
       <div className="flex flex-col">
         <label htmlFor="email">Email</label>
         <input
-          className="h-8 text-sm bg-secondary outline-0 ::placeholder:text-slate-700 rounded-md py-1 px-2"
+          className="h-8 text-sm bg-secondary outline-0 placeholder:text-slate-700 rounded-md py-1 px-2"
           type="email"
           name="email"
           id="email"
+          autoComplete="email"
+          placeholder="email@example.com"
           required
         />
       </div>
@@ -55,6 +58,7 @@ const SignupPage = () => {
           type="password"
           name="password"
           id="password"
+          placeholder="********"
           required
         />
       </div>
